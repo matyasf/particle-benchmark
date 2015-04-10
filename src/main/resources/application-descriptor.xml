@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<application xmlns="http://ns.adobe.com/air/application/17.0">
+
+    <id>com.funkypandagame.pbenchmark</id>
+    <filename>ParticleBenchmark</filename>
+    <name>Starling particle benchmark</name>
+    <versionNumber>1.0</versionNumber>
+
+    <initialWindow>
+        <content>particle-sim-benchmark.swf</content>
+        <visible>true</visible>
+        <aspectRatio>portrait</aspectRatio>
+        <fullScreen>false</fullScreen>
+        <renderMode>direct</renderMode>
+    </initialWindow>
+
+    <icon>
+        <image48x48>icons/Icon-48.png</image48x48>
+        <image57x57>icons/Icon-57.png</image57x57>
+        <image72x72>icons/Icon-72.png</image72x72>
+        <image76x76>icons/Icon-76.png</image76x76>
+        <image80x80>icons/Icon-80.png</image80x80>
+        <image96x96>icons/Icon-96.png</image96x96>
+        <image120x120>icons/Icon-120.png</image120x120>
+<!--<image128x128>common/icons/icon_128.png</image128x128>-->
+        <image152x152>icons/Icon-152.png</image152x152>
+        <image512x512>icons/Icon-512.png</image512x512>
+        <image1024x1024>icons/Icon-1024.png</image1024x1024>
+    </icon>
+
+    <android>
+        <manifestAdditions>
+            <![CDATA[
+				<manifest android:installLocation="auto">
+				    <uses-permission android:name="android.permission.INTERNET"/>
+				</manifest>
+			]]>
+        </manifestAdditions>
+    </android>
+    <iPhone>
+        <InfoAdditions>
+            <![CDATA[
+				<key>UIDeviceFamily</key>
+				<array>
+					<string>1</string>
+					<string>2</string>
+				</array>
+			]]>
+        </InfoAdditions>
+        <requestedDisplayResolution>high</requestedDisplayResolution>
+    </iPhone>
+
+</application>

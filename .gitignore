@@ -1,0 +1,8 @@
+/bin-debug/*
+**/.idea
+**/*.iml
+/build/*
+.FlexUnitSettings
+**/.DS_Store
+/.gradle/*
+

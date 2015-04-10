@@ -1,0 +1,94 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url repoManagerURL + 'repo'
+            credentials {
+                username = mavenUsername
+                password = mavenPassword
+            }
+        }
+    }
+
+    dependencies {
+        classpath group: 'org.gradlefx', name: 'gradlefx', version: '1.1'
+    }
+}
+
+apply plugin: 'gradlefx'
+apply plugin: 'ideafx'
+
+type = 'mobile'
+version = '1.0.0'
+
+mainClass = 'com/funkypandagame/pbenchmark/Main.as'
+playerVersion = '17.0'
+
+def compilerOptions = [
+    '-swf-version=26',
+    '-advanced-telemetry',
+    // AS3 metadata
+    '-keep-as3-metadata+=Inline,Embed,SWF,Transient',
+    //'-debug=false', //decide if its needed here
+    '-verbose-stacktraces=true',
+    '-inline'
+]
+
+repositories {
+    mavenLocal()
+    maven {
+        url repoManagerURL + 'repo'
+        credentials {
+            username = mavenUsername
+            password = mavenPassword
+        }
+    }
+    ivy {
+        name 'Adobe Air SDK'
+        artifactPattern  Os.isFamily(Os.FAMILY_WINDOWS) ?
+                'http://airdownload.adobe.com/air/win/download/[revision]/[module]_Compiler.[ext]' :
+                'http://airdownload.adobe.com/air/mac/download/[revision]/[module]_Compiler.[ext]'
+    }
+}
+
+dependencies {
+    airSDK group: 'com.adobe', name: 'AIRSDK', version: '17.0', ext: Os.isFamily(Os.FAMILY_WINDOWS) ? 'zip' : 'tbz2'
+
+    merged group: 'com.gamua', name: 'starling-framework', version: '1.6.0', ext: 'swc'
+
+    merged 'com.funkypandagame:stardust-sim-loader:3.11'
+}
+
+additionalCompilerOptions = compilerOptions
+
+sdkAutoInstall {
+    showPrompts = false
+}
+
+airMobile {
+    platform = 'ios'
+    target = 'ipa-ad-hoc'
+    outputExtension = 'ipa'
+    provisioningProfile = 'certificates/development/development.mobileprovision'
+}
+
+air {
+    keystore = 'certificates/development/ios_development.p12'
+    storepass = 'TODO_YOUR_PASSWORD'
+    applicationDescriptor = 'src/main/resources/application-descriptor.xml'
+    fileOptions = [
+        '-C','src/main/resources',
+        '.'
+    ]
+}
+
+///////////////////////////////////////// wrapper
+task wrapper(type: Wrapper) {
+    group = 'Buildmaster'
+    description = 'Generates gradlew and gradlew.bat bootstrap scripts.'
+    gradleVersion = '2.1'
+    // place jar file and properties into a subdirectory to avoid root dir clutter
+    jarFile = 'gradle/wrapper/gradle.jar'
+}
