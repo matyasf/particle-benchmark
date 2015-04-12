@@ -51,7 +51,7 @@ public class StarlingMain extends Sprite
         stardustButton.y = 70;
         stardustButton.addEventListener(Event.TRIGGERED, onStardustButtonTriggered);
 
-        var sapButton : Button = Utils.createButton("SAP test(not working)", 600);
+        var sapButton : Button = Utils.createButton("SAP test(not fully working)", 600);
         choseTestButtons.addChild(sapButton);
         sapButton.x = 20;
         sapButton.y = 140;

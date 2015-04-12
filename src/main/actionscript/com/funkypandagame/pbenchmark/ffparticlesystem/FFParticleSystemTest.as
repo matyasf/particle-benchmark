@@ -63,7 +63,7 @@ public class FFParticleSystemTest extends Sprite implements ITest
 
     public function get numberOfParticles() : uint
     {
-        return psFFSimple.numParticles; //?? this seems to report 2x the amount of particles
+        return psFFSimple.numParticles / 2; //?? this seems to report 2x the amount of particles, thus thr division
     }
 
 }
