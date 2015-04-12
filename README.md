@@ -5,6 +5,13 @@ Particle simulators benchmark
 How to build
 ------------
 
+Manually
+---
+Just add Starling as a dependency. Make sure that you make a release build and you use the -inline compiler argument
+
+With Gradle
+---
+
 Make sure you have Java 8 installed
 
 Specify your certificates/mobile provision location and its name and password in the build.gradle file.
