@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<TextureAtlas imagePath="star.png">
+
+    <SubTexture name="star" x="0" y="0" width="16" height="16"/>
+
+</TextureAtlas>

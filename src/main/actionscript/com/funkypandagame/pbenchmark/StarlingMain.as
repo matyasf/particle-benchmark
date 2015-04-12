@@ -1,6 +1,7 @@
 package com.funkypandagame.pbenchmark
 {
 
+import com.funkypandagame.pbenchmark.ffparticlesystem.FFParticleSystemTest;
 import com.funkypandagame.pbenchmark.sap.SAPTest;
 import com.funkypandagame.pbenchmark.stardust.StardustTest;
 
@@ -50,11 +51,18 @@ public class StarlingMain extends Sprite
         stardustButton.y = 70;
         stardustButton.addEventListener(Event.TRIGGERED, onStardustButtonTriggered);
 
-        var sapButton : Button = Utils.createButton("SAP test", 600);
+        var sapButton : Button = Utils.createButton("SAP test(not working)", 600);
         choseTestButtons.addChild(sapButton);
         sapButton.x = 20;
         sapButton.y = 140;
         sapButton.addEventListener(Event.TRIGGERED, onSAPButtonTriggered);
+
+        var ffButton : Button = Utils.createButton("FFParticleSystem test", 600);
+        choseTestButtons.addChild(ffButton);
+        ffButton.x = 20;
+        ffButton.y = 210;
+        ffButton.addEventListener(Event.TRIGGERED, onFFButtonTriggered);
+
         // add a button for your simulation here
     }
 
@@ -66,6 +74,11 @@ public class StarlingMain extends Sprite
     private function onSAPButtonTriggered(evt : Event) : void
     {
         switchToTest(SAPTest);
+    }
+
+    private function onFFButtonTriggered(evt : Event) : void
+    {
+        switchToTest(FFParticleSystemTest);
     }
 
     private function decreaseParticles(evt : Event) : void
@@ -85,7 +98,7 @@ public class StarlingMain extends Sprite
 
         currentTest = new testClass();
         addChild(currentTest);
-        currentTest.y = 60;
+        currentTest.y = 65;
 
         addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
     }
@@ -97,7 +110,7 @@ public class StarlingMain extends Sprite
         cnt++;
         if (cnt % 120 == 0)
         {
-            numParticles.text = (120/frameTime).toFixed(1) + "  " + ITest(currentTest).numberOfParticles.toString();
+            numParticles.text = ITest(currentTest).numberOfParticles.toString();
             frameTime = 0;
         }
     }
