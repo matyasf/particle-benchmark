@@ -7,7 +7,7 @@ How to build
 
 Make sure you have Java 8 installed
 
-Add you certificates to the certificate folder. Specify its name and password in the build.gradle file.
+Specify your certificates/mobile provision location and its name and password in the build.gradle file.
 
 Comment out the iOS/Android part of the build script based on which one you want to build
 
