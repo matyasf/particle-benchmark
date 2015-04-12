@@ -13,7 +13,7 @@ buildscript {
     }
 
     dependencies {
-        classpath group: 'org.gradlefx', name: 'gradlefx', version: '1.1'
+        classpath group: 'org.gradlefx', name: 'gradlefx', version: '1.1.1'
     }
 }
 
@@ -57,8 +57,6 @@ dependencies {
     airSDK group: 'com.adobe', name: 'AIRSDK', version: '17.0', ext: Os.isFamily(Os.FAMILY_WINDOWS) ? 'zip' : 'tbz2'
 
     merged group: 'com.gamua', name: 'starling-framework', version: '1.6.0', ext: 'swc'
-
-    merged 'com.funkypandagame:stardust-sim-loader:3.11'
 }
 
 additionalCompilerOptions = compilerOptions
@@ -68,15 +66,24 @@ sdkAutoInstall {
 }
 
 airMobile {
+    // Comment out the part based on your platform
+    // Android
+    platform = 'android'
+    target = 'apk-captive-runtime'
+    outputExtension = 'apk'
+    arch = 'x86' // Use only on x86 Android devices. Needs the development branch GradleFx!
+    //iOS
+    /*
     platform = 'ios'
     target = 'ipa-ad-hoc'
     outputExtension = 'ipa'
     provisioningProfile = 'certificates/development/development.mobileprovision'
+    */
 }
 
 air {
-    keystore = 'certificates/development/ios_development.p12'
-    storepass = 'TODO_YOUR_PASSWORD'
+    keystore = 'certificates/development/androidkey.p12'
+    storepass = 'hudejo'
     applicationDescriptor = 'src/main/resources/application-descriptor.xml'
     fileOptions = [
         '-C','src/main/resources',

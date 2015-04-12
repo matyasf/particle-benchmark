@@ -5,11 +5,15 @@ Particle simulators benchmark
 How to build
 ------------
 
-Make sure you have Java 7 or newer installed
+Make sure you have Java 8 installed
+
+Add you certificates to the certificate folder. Specify its name and password in the build.gradle file.
+
+Comment out the iOS/Android part of the build script based on which one you want to build
 
 (OSX only) Make the file "gradlew" executable
 
-Run "gradlew packageMobile" to make an .ipa
+Run "gradlew packageMobile" to make an .ipa/apk
 
 Run "gradlew installMobile" to install it on a connected USB device
 

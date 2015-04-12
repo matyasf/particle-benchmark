@@ -10,6 +10,7 @@ import de.flintfabrik.starling.display.FFParticleSystem.SystemOptions;
 import starling.display.Sprite;
 import starling.events.Event;
 import starling.textures.Texture;
+import starling.textures.TextureSmoothing;
 
 public class FFParticleSystemTest extends Sprite implements ITest
 {
@@ -40,6 +41,7 @@ public class FFParticleSystemTest extends Sprite implements ITest
     private function onAddedToStage(evt : Event) : void
     {
         psFFSimple = new FFParticleSystem(soFFSimple);
+        psFFSimple.smoothing = TextureSmoothing.NONE;
         addChild(psFFSimple);
         psFFSimple.start();
     }

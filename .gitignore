@@ -5,4 +5,5 @@
 .FlexUnitSettings
 **/.DS_Store
 /.gradle/*
+certificates/*
 

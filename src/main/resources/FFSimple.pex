@@ -2,7 +2,7 @@
   <texture name="texture.png"/>
   <sourcePosition x="0" y="0"/>
   <sourcePositionVariance x="640" y="0"/>
-  <speed value="80"/>
+  <speed value="60"/>
   <speedVariance value="0"/>
   <particleLifeSpan value="8"/>
   <particleLifespanVariance value="2"/>

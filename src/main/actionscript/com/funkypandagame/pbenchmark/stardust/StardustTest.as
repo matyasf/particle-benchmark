@@ -37,7 +37,7 @@ public class StardustTest extends Sprite implements ITest
     private function onSimLoaded(evt : Event) : void
     {
         project = loader.createProjectInstance();
-        loader.destroy();
+        loader.dispose();
         loader = null;
 
         player = new SimPlayer();
