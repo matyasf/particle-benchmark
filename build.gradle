@@ -2,18 +2,11 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 buildscript {
     repositories {
-        mavenLocal()
-        maven {
-            url repoManagerURL + 'repo'
-            credentials {
-                username = mavenUsername
-                password = mavenPassword
-            }
-        }
+        mavenCentral()
     }
 
     dependencies {
-        classpath group: 'org.gradlefx', name: 'gradlefx', version: '1.1.1'
+        classpath group: 'org.gradlefx', name: 'gradlefx', version: '1.1'
     }
 }
 
@@ -31,20 +24,13 @@ def compilerOptions = [
     '-advanced-telemetry',
     // AS3 metadata
     '-keep-as3-metadata+=Inline,Embed,SWF,Transient',
-    //'-debug=false', //decide if its needed here
+    //'-debug=false',
     '-verbose-stacktraces=true',
     '-inline'
 ]
 
 repositories {
-    mavenLocal()
-    maven {
-        url repoManagerURL + 'repo'
-        credentials {
-            username = mavenUsername
-            password = mavenPassword
-        }
-    }
+    mavenCentral()
     ivy {
         name 'Adobe Air SDK'
         artifactPattern  Os.isFamily(Os.FAMILY_WINDOWS) ?
@@ -56,7 +42,7 @@ repositories {
 dependencies {
     airSDK group: 'com.adobe', name: 'AIRSDK', version: '17.0', ext: Os.isFamily(Os.FAMILY_WINDOWS) ? 'zip' : 'tbz2'
 
-    merged group: 'com.gamua', name: 'starling-framework', version: '1.6.0', ext: 'swc'
+    merged  fileTree(dir: 'libs', include: '*.swc')
 }
 
 additionalCompilerOptions = compilerOptions
@@ -71,8 +57,8 @@ airMobile {
     platform = 'android'
     target = 'apk-captive-runtime'
     outputExtension = 'apk'
-    arch = 'x86' // Use only on x86 Android devices. Needs the development branch GradleFx!
-    //iOS
+    //arch = 'x86' // Use only on x86 Android devices. Needs the development branch GradleFx!
+    // iOS
     /*
     platform = 'ios'
     target = 'ipa-ad-hoc'
@@ -83,7 +69,7 @@ airMobile {
 
 air {
     keystore = 'certificates/development/androidkey.p12'
-    storepass = 'hudejo'
+    storepass = 'TODO_YOUR_PASSWORD'
     applicationDescriptor = 'src/main/resources/application-descriptor.xml'
     fileOptions = [
         '-C','src/main/resources',
